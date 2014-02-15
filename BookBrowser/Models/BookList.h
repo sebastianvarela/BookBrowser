@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Book.h"
 
 @interface BookList : NSObject
+
+- (void)addBook:(Book *)book;
 
 @end

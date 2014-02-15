@@ -8,6 +8,24 @@
 
 #import "BookList.h"
 
+@interface BookList ()
+	@property (strong, nonatomic) NSMutableArray *collection;
+@end
+
 @implementation BookList
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _collection = [NSMutableArray array];
+    }
+    return self;
+}
+
+- (void)addBook:(Book *)book
+{
+	[self.collection addObject:book];
+}
 
 @end

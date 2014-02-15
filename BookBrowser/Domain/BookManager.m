@@ -16,7 +16,7 @@ static NSString *const BOOKS_RESOURCE_URL = @"http://bqreader.eu01.aws.af.cm/boo
 
 @implementation BookManager
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {
@@ -28,6 +28,8 @@ static NSString *const BOOKS_RESOURCE_URL = @"http://bqreader.eu01.aws.af.cm/boo
     }
     return self;
 }
+
+#pragma mark - Connection Delegate
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -48,6 +50,40 @@ static NSString *const BOOKS_RESOURCE_URL = @"http://bqreader.eu01.aws.af.cm/boo
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSLog(@"Data succesfully received: %d bytes", [self.booksData length]);
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+		NSArray *json = [NSJSONSerialization JSONObjectWithData:self.booksData options:kNilOptions error:nil];
+		BookList *bookList = [self deserializeJSON:json];
+		[self.delegate bookManagerDidReceivedBookCollectionFromServer:bookList];
+	});
+}
+
+#pragma mark - Custom Methods
+
+- (BookList *)deserializeJSON:(NSArray *)json
+{
+	BookList *bookList = [BookList new];
+	for(NSDictionary *jsonBook in json)
+	{
+		Book *book = [Book new];
+		for(NSString *key in jsonBook)
+		{
+			if ([book respondsToSelector:NSSelectorFromString(key)])
+			{
+				if ([key isEqualToString:@"isPremium"])
+				{
+					NSNumber *isPremium = [NSNumber numberWithBool:[[jsonBook objectForKey:key] boolValue]];
+					[book setValue:isPremium forKey:@"premium"];
+				}
+				else
+				{
+					[book setValue:[jsonBook valueForKey:key] forKey:key];
+				}
+			}
+		}
+		[bookList addBook:book];
+	}
+	return bookList;
 }
 
 @end
