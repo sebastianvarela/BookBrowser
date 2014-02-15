@@ -25,6 +25,7 @@
 		9EF4DDC018AFE59100B69A55 /* BookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDBF18AFE59100B69A55 /* BookManager.m */; };
 		9EF4DDC718AFEA1D00B69A55 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDC618AFEA1D00B69A55 /* Book.m */; };
 		9EF4DDCA18AFEA3200B69A55 /* BookList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDC918AFEA3200B69A55 /* BookList.m */; };
+		9EF4DDCF18AFFEB500B69A55 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9EF4DDCD18AFFEB500B69A55 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,9 @@
 		9EF4DDC618AFEA1D00B69A55 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		9EF4DDC818AFEA3200B69A55 /* BookList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookList.h; sourceTree = "<group>"; };
 		9EF4DDC918AFEA3200B69A55 /* BookList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookList.m; sourceTree = "<group>"; };
+		9EF4DDCB18AFFA7700B69A55 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9EF4DDCC18AFFA7700B69A55 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9EF4DDCE18AFFEB500B69A55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 			children = (
 				9E06700218AEE4C200FE62A5 /* BookBrowser-Info.plist */,
 				9E06700318AEE4C200FE62A5 /* InfoPlist.strings */,
+				9EF4DDCD18AFFEB500B69A55 /* Localizable.strings */,
 				9E06700618AEE4C200FE62A5 /* main.m */,
 				9E06700818AEE4C200FE62A5 /* BookBrowser-Prefix.pch */,
 			);
@@ -244,6 +249,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 			);
 			mainGroup = 9E066FEE18AEE4C200FE62A5;
 			productRefGroup = 9E066FF818AEE4C200FE62A5 /* Products */;
@@ -261,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EF4DDCF18AFFEB500B69A55 /* Localizable.strings in Resources */,
 				9E06700518AEE4C200FE62A5 /* InfoPlist.strings in Resources */,
 				9EF4DDB618AFD78800B69A55 /* Storyboard_iPhone.storyboard in Resources */,
 				9E06700D18AEE4C200FE62A5 /* Images.xcassets in Resources */,
@@ -315,6 +322,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9E06700418AEE4C200FE62A5 /* en */,
+				9EF4DDCB18AFFA7700B69A55 /* es */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -323,8 +331,17 @@
 			isa = PBXVariantGroup;
 			children = (
 				9E06701D18AEE4C300FE62A5 /* en */,
+				9EF4DDCC18AFFA7700B69A55 /* es */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9EF4DDCD18AFFEB500B69A55 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9EF4DDCE18AFFEB500B69A55 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

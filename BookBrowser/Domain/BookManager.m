@@ -43,8 +43,8 @@ static NSString *const BOOKS_RESOURCE_URL = @"http://bqreader.eu01.aws.af.cm/boo
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	if ([self.delegate respondsToSelector:@selector(bookManagerDidFailReceivingDataFromServer)])
-		[self.delegate bookManagerDidFailReceivingDataFromServer];
+	if ([self.delegate respondsToSelector:@selector(bookManagerDidFailReceivingDataFromServerWithError:)])
+		[self.delegate bookManagerDidFailReceivingDataFromServerWithError:error];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection

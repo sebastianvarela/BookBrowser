@@ -12,7 +12,7 @@
 @protocol BookManagerDelegate <NSObject>
 - (void)bookManagerDidReceivedBookCollectionFromServer:(BookList *)bookCollection;
 @optional
-- (void)bookManagerDidFailReceivingDataFromServer;
+- (void)bookManagerDidFailReceivingDataFromServerWithError:(NSError *)error;
 @end
 
 @interface BookManager : NSObject

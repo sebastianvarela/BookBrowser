@@ -30,6 +30,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	
+	self.title = NSLocalizedString(@"Biblioteca", nil);
 	self.bookManager = [BookManager new];
 }
 
@@ -41,9 +42,10 @@
 	
 }
 
-- (void)bookManagerDidFailReceivingDataFromServer
+- (void)bookManagerDidFailReceivingDataFromServerWithError:(NSError *)error
 {
-	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Aceptar", nil), nil];
+	[alert show];
 }
 
 @end
