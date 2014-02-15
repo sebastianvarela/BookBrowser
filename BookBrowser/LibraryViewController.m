@@ -67,6 +67,8 @@
 	BookCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CoverCellIdentifier" forIndexPath:indexPath];
 	Book *book = [self.bookList bookAtIndex:indexPath.row];
 	
+	[cell setCoverImage:[UIImage new]];
+	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		NSURL *url = [NSURL URLWithString:book.coverUrl];
 		NSData *data = [NSData dataWithContentsOfURL:url];
