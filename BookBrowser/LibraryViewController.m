@@ -10,11 +10,13 @@
 #import "BookCell.h"
 #import "LibraryHeader.h"
 
-@interface LibraryViewController () <BookManagerDelegate, UISearchBarDelegate>
+@interface LibraryViewController () <BookManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) BookManager *bookManager;
 @property (strong, nonatomic) BookList *bookList;
 @property (weak, nonatomic) UISearchBar *bookSearchBar;
+@property (strong, nonatomic) UIActionSheet *orderActionSheet;
+@property (strong, nonatomic) UIActionSheet *filterActionSheet;
 
 @end
 
@@ -45,11 +47,17 @@
 - (IBAction)orderButtonTouch:(id)sender
 {
 	[self hideKeyboardOnBookSearchBar];
+	
+	self.orderActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Ordenar", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancelar", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"ISBN", nil), NSLocalizedString(@"Título", nil), nil];
+	[self.orderActionSheet showFromBarButtonItem:sender animated:YES];
 }
 
 - (IBAction)filterButtonTouch:(id)sender
 {
 	[self hideKeyboardOnBookSearchBar];
+
+	self.filterActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Filtrar", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancelar", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Todos", nil), NSLocalizedString(@"Normales", nil), NSLocalizedString(@"Premium", nil), nil];
+	[self.filterActionSheet showFromBarButtonItem:sender animated:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
