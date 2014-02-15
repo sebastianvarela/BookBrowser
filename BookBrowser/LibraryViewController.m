@@ -34,9 +34,19 @@
 	// Do any additional setup after loading the view.
 	
 	self.title = NSLocalizedString(@"Biblioteca", nil);
+	self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Ordenar", nil);
+	self.navigationItem.rightBarButtonItem.title = NSLocalizedString(@"Filtrar", nil);
 	self.bookManager = [BookManager new];
 	self.bookList = [BookList new];
 	self.bookManager.delegate = self;
+}
+
+- (IBAction)orderButtonTouch:(id)sender
+{
+}
+
+- (IBAction)filterButtonTouch:(id)sender
+{
 }
 
 #pragma mark - Book Manager Delegate
