@@ -28,4 +28,14 @@
 	[self.collection addObject:book];
 }
 
+- (NSInteger)count
+{
+	return self.collection.count;
+}
+
+- (Book *)bookAtIndex:(NSInteger)index
+{
+	return [self.collection objectAtIndex:index];
+}
+
 @end

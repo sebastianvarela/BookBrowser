@@ -12,5 +12,7 @@
 @interface BookList : NSObject
 
 - (void)addBook:(Book *)book;
+- (NSInteger)count;
+- (Book *)bookAtIndex:(NSInteger)index;
 
 @end
