@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) BookManager *bookManager;
 @property (strong, nonatomic) BookList *bookList;
+@property (weak, nonatomic) UISearchBar *bookSearchBar;
 
 @end
 
@@ -43,10 +44,17 @@
 
 - (IBAction)orderButtonTouch:(id)sender
 {
+	[self hideKeyboardOnBookSearchBar];
 }
 
 - (IBAction)filterButtonTouch:(id)sender
 {
+	[self hideKeyboardOnBookSearchBar];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	[self hideKeyboardOnBookSearchBar];
 }
 
 #pragma mark - Book Manager Delegate
@@ -98,6 +106,7 @@
         LibraryHeader *reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
 		
 		reusableview.bookSearchBar.delegate = self;
+		self.bookSearchBar = reusableview.bookSearchBar;
 		
         return reusableview;
     }
@@ -114,8 +123,15 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-	[searchBar setShowsCancelButton:NO animated:YES];
-	[searchBar resignFirstResponder];
+	[self hideKeyboardOnBookSearchBar];
+}
+
+#pragma mark - Custom Methods
+
+- (void)hideKeyboardOnBookSearchBar
+{
+	[self.bookSearchBar setShowsCancelButton:NO animated:YES];
+	[self.bookSearchBar resignFirstResponder];
 }
 
 @end
