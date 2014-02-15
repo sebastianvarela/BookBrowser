@@ -21,6 +21,7 @@
 		9E06702018AEE4C300FE62A5 /* BookBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E06701F18AEE4C300FE62A5 /* BookBrowserTests.m */; };
 		9EF4DDB618AFD78800B69A55 /* Storyboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EF4DDB518AFD78800B69A55 /* Storyboard_iPhone.storyboard */; };
 		9EF4DDB818AFD7D200B69A55 /* Storyboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EF4DDB718AFD7D200B69A55 /* Storyboard_iPad.storyboard */; };
+		9EF4DDBB18AFDE2900B69A55 /* LibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDBA18AFDE2900B69A55 /* LibraryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		9E06701F18AEE4C300FE62A5 /* BookBrowserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookBrowserTests.m; sourceTree = "<group>"; };
 		9EF4DDB518AFD78800B69A55 /* Storyboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_iPhone.storyboard; sourceTree = "<group>"; };
 		9EF4DDB718AFD7D200B69A55 /* Storyboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_iPad.storyboard; sourceTree = "<group>"; };
+		9EF4DDB918AFDE2900B69A55 /* LibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryViewController.h; sourceTree = "<group>"; };
+		9EF4DDBA18AFDE2900B69A55 /* LibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 				9E06700118AEE4C200FE62A5 /* Supporting Files */,
 				9EF4DDB518AFD78800B69A55 /* Storyboard_iPhone.storyboard */,
 				9EF4DDB718AFD7D200B69A55 /* Storyboard_iPad.storyboard */,
+				9EF4DDB918AFDE2900B69A55 /* LibraryViewController.h */,
+				9EF4DDBA18AFDE2900B69A55 /* LibraryViewController.m */,
 			);
 			path = BookBrowser;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EF4DDBB18AFDE2900B69A55 /* LibraryViewController.m in Sources */,
 				9E06700B18AEE4C200FE62A5 /* AppDelegate.m in Sources */,
 				9E06700718AEE4C200FE62A5 /* main.m in Sources */,
 			);
