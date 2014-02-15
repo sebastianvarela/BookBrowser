@@ -10,7 +10,7 @@
 
 @interface LibraryViewController ()
 
-@property (strong, nonatomic) NSMutableData *booksData;
+@property (strong, nonatomic) BookManager *bookManager;
 
 @end
 
@@ -30,31 +30,20 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	
-	self.booksData = [NSMutableData data];
+	self.bookManager = [BookManager new];
+}
+
+#pragma mark -
+#pragma mark Book Manager Delegate
+
+- (void)bookManagerDidReceivedBookCollectionFromServer:(BookList *)bookCollection
+{
 	
-	NSURL *url = [NSURL URLWithString:@"http://bqreader.eu01.aws.af.cm/books"];
-	NSURLRequest *request = [NSURLRequest requestWithURL:url];
-	(void)[NSURLConnection connectionWithRequest:request delegate:self];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void)bookManagerDidFailReceivingDataFromServer
 {
-    [self.booksData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [self.booksData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-	NSLog(@"Data succesfully received: %d bytes", [self.booksData length]);
+	
 }
 
 @end

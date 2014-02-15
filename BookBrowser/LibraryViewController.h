@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BookManager.h"
 
-@interface LibraryViewController : UICollectionViewController
+@interface LibraryViewController : UICollectionViewController <BookManagerDelegate>
 
 @end
