@@ -48,6 +48,7 @@
 {
 	[self hideKeyboardOnBookSearchBar];
 	
+	//Las opciones del filter action corresponden a las disponibles en BookSortType
 	self.orderActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Ordenar", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancelar", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"ISBN", nil), NSLocalizedString(@"Título", nil), nil];
 	[self.orderActionSheet showFromBarButtonItem:sender animated:YES];
 }
@@ -56,6 +57,7 @@
 {
 	[self hideKeyboardOnBookSearchBar];
 
+	//Las opciones del filter action corresponden a las disponibles en BookFilterType
 	self.filterActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Filtrar", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancelar", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Todos", nil), NSLocalizedString(@"Normales", nil), NSLocalizedString(@"Premium", nil), nil];
 	[self.filterActionSheet showFromBarButtonItem:sender animated:YES];
 }
@@ -132,6 +134,31 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
 	[self hideKeyboardOnBookSearchBar];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+	[self.bookList filterWithText:searchText];
+	[self.collectionView reloadData];
+}
+
+#pragma mark - UIActionSheet Delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == actionSheet.cancelButtonIndex)
+		return;
+
+	if ([actionSheet isEqual:self.orderActionSheet])
+	{
+		[self.bookList setSortMethod:(BookSortType)buttonIndex];
+		[self.collectionView reloadData];
+	}
+	else if ([actionSheet isEqual:self.filterActionSheet])
+	{
+		[self.bookList setFilterMethod:(BookFilterType)buttonIndex];
+		[self.collectionView reloadData];
+	}
 }
 
 #pragma mark - Custom Methods

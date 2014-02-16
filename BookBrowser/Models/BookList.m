@@ -10,6 +10,9 @@
 
 @interface BookList ()
 	@property (strong, nonatomic) NSMutableArray *collection;
+	@property (nonatomic) BookSortType bookSortType;
+	@property (nonatomic) BookFilterType bookFilterType;
+	@property (strong, nonatomic) NSString *bookFilterText;
 @end
 
 @implementation BookList
@@ -36,6 +39,21 @@
 - (Book *)bookAtIndex:(NSInteger)index
 {
 	return [self.collection objectAtIndex:index];
+}
+
+- (void)setSortMethod:(BookSortType)bookSortType
+{
+	self.bookSortType = bookSortType;
+}
+
+- (void)setFilterMethod:(BookFilterType)BookFilterType
+{
+	self.bookFilterType = BookFilterType;
+}
+
+- (void)filterWithText:(NSString *)bookFilterText
+{
+	self.bookFilterText = bookFilterText;
 }
 
 @end
