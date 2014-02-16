@@ -19,6 +19,7 @@
 		9E06701618AEE4C300FE62A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E066FFE18AEE4C200FE62A5 /* UIKit.framework */; };
 		9E06701E18AEE4C300FE62A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E06701C18AEE4C300FE62A5 /* InfoPlist.strings */; };
 		9E06702018AEE4C300FE62A5 /* BookBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E06701F18AEE4C300FE62A5 /* BookBrowserTests.m */; };
+		9E95C00518B10EA6000AC1FC /* Synopsis.css in Resources */ = {isa = PBXBuildFile; fileRef = 9E95C00418B10EA6000AC1FC /* Synopsis.css */; };
 		9EF4DDC018AFE59100B69A55 /* BookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDBF18AFE59100B69A55 /* BookManager.m */; };
 		9EF4DDC718AFEA1D00B69A55 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDC618AFEA1D00B69A55 /* Book.m */; };
 		9EF4DDCA18AFEA3200B69A55 /* BookList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDC918AFEA3200B69A55 /* BookList.m */; };
@@ -59,6 +60,7 @@
 		9E06701B18AEE4C300FE62A5 /* BookBrowserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BookBrowserTests-Info.plist"; sourceTree = "<group>"; };
 		9E06701D18AEE4C300FE62A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E06701F18AEE4C300FE62A5 /* BookBrowserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookBrowserTests.m; sourceTree = "<group>"; };
+		9E95C00418B10EA6000AC1FC /* Synopsis.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Synopsis.css; sourceTree = "<group>"; };
 		9EF4DDBE18AFE59100B69A55 /* BookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookManager.h; sourceTree = "<group>"; };
 		9EF4DDBF18AFE59100B69A55 /* BookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookManager.m; sourceTree = "<group>"; };
 		9EF4DDC518AFEA1D00B69A55 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				9EF4DDD918B005B800B69A55 /* BookCell.m */,
 				9EF4DDDB18B0263900B69A55 /* LibraryHeader.h */,
 				9EF4DDDC18B0263A00B69A55 /* LibraryHeader.m */,
+				9E95C00418B10EA6000AC1FC /* Synopsis.css */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				9EF4DDCF18AFFEB500B69A55 /* Localizable.strings in Resources */,
 				9E06700518AEE4C200FE62A5 /* InfoPlist.strings in Resources */,
 				9EF4DDD418B004E600B69A55 /* Storyboard_iPhone.storyboard in Resources */,
+				9E95C00518B10EA6000AC1FC /* Synopsis.css in Resources */,
 				9E06700D18AEE4C200FE62A5 /* Images.xcassets in Resources */,
 				9EF4DDD318B004E600B69A55 /* Storyboard_iPad.storyboard in Resources */,
 			);
