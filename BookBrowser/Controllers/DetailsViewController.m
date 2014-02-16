@@ -83,7 +83,7 @@
 {
 	NSString *pathToiOSCss = [[NSBundle mainBundle] pathForResource:@"Synopsis" ofType:@"css"];
 	NSString *cssContent = [NSString stringWithContentsOfFile:pathToiOSCss encoding:NSUTF8StringEncoding error:NULL];
-	NSString *htmlWithCss = [NSString stringWithFormat:@"<html><style type=\"text/css\">%@</style></head><body>%@</body></html>", cssContent, htmlString];
+	NSString *htmlWithCss = [NSString stringWithFormat:@"<html><head><style type=\"text/css\">%@</style></head><body>%@</body></html>", cssContent, htmlString];
 	[self.synopsisWebView setScalesPageToFit:NO];
 	[self.synopsisWebView.scrollView setZoomScale:1.0 animated:NO];
 	[self.synopsisWebView loadHTMLString:htmlWithCss baseURL:nil];

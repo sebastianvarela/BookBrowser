@@ -1,6 +1,7 @@
-*{
-	Font-Family: "Helvetica";
-	Font-Size: 12px;
-	margin: 0;
-	padding: 0;
+body {
+    font-family: "Helvetica";
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: none;
 }
