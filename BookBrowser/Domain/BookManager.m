@@ -61,7 +61,7 @@ static NSString *const BOOKS_RESOURCE_URL = @"http://bqreader.eu01.aws.af.cm/boo
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	NSLog(@"Data succesfully received: %lu bytes", [self.booksData length]);
+	NSLog(@"Data succesfully received: %lu bytes", (unsigned long)[self.booksData length]);
 	
 	if ([connection isEqual:self.bookCollectionConnection])
 	{
