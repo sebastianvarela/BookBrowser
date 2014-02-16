@@ -43,11 +43,14 @@
 	self.bookManager.delegate = self;
 	[self.bookManager fetchBookDetailsWithISBN:self.book.isbn];
 	
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
 		NSURL *url = [NSURL URLWithString:self.book.coverUrl];
 		NSData *data = [NSData dataWithContentsOfURL:url];
 		UIImage *coverImage = [UIImage imageWithData:data];
-		self.coverImageView.image = coverImage;
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			self.coverImageView.image = coverImage;
+		});
 	});
 }
 

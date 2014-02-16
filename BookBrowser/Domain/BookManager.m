@@ -65,16 +65,19 @@ static NSString *const BOOKS_RESOURCE_URL = @"http://bqreader.eu01.aws.af.cm/boo
 	
 	if ([connection isEqual:self.bookCollectionConnection])
 	{
-		dispatch_async(dispatch_get_main_queue(), ^{
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
 			NSArray *json = [NSJSONSerialization JSONObjectWithData:self.booksData options:kNilOptions error:nil];
 			BookList *bookList = [self deserializeJSON:json];
-			if ([self.delegate respondsToSelector:@selector(bookManagerDidReceivedBookCollection:)])
-				[self.delegate bookManagerDidReceivedBookCollection:bookList];
+			
+			dispatch_async(dispatch_get_main_queue(), ^{
+				if ([self.delegate respondsToSelector:@selector(bookManagerDidReceivedBookCollection:)])
+					[self.delegate bookManagerDidReceivedBookCollection:bookList];
+			});
 		});
 	}
 	else if ([connection isEqual:self.bookDetailsConnection])
 	{
-		dispatch_async(dispatch_get_main_queue(), ^{
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
 			NSDictionary *json = [NSJSONSerialization JSONObjectWithData:self.booksData options:kNilOptions error:nil];
 			BookDetails *bookDetails = [BookDetails new];
 			for(NSString *key in json)
@@ -83,8 +86,10 @@ static NSString *const BOOKS_RESOURCE_URL = @"http://bqreader.eu01.aws.af.cm/boo
 					[bookDetails setValue:[json valueForKey:key] forKey:key];
 			}
 			
-			if ([self.delegate respondsToSelector:@selector(bookManagerDidReceivedBookDetails:)])
-				[self.delegate bookManagerDidReceivedBookDetails:bookDetails];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				if ([self.delegate respondsToSelector:@selector(bookManagerDidReceivedBookDetails:)])
+					[self.delegate bookManagerDidReceivedBookDetails:bookDetails];
+			});
 		});
 	}
 }

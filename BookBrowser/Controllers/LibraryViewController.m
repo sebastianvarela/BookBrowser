@@ -101,11 +101,14 @@
 	
 	[cell setCoverImage:[UIImage new]];
 	
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
 		NSURL *url = [NSURL URLWithString:book.coverUrl];
 		NSData *data = [NSData dataWithContentsOfURL:url];
 		UIImage *coverImage = [UIImage imageWithData:data];
-		[cell setCoverImage:coverImage];
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[cell setCoverImage:coverImage];
+		});
 	});
 	
     return cell;
