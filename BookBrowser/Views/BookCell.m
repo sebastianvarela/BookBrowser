@@ -9,7 +9,7 @@
 #import "BookCell.h"
 
 @interface BookCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
+@property (weak, nonatomic) IBOutlet UIButton *coverImageButton;
 @end
 
 @implementation BookCell
@@ -24,17 +24,8 @@
 }
 
 - (void)setCoverImage:(UIImage *)coverImage
-{	
-	self.coverImageView.image = coverImage;
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+	[self.coverImageButton setImage:coverImage forState:UIControlStateNormal];
 }
-*/
 
 @end

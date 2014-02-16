@@ -46,17 +46,23 @@
                                             <rect key="frame" x="37" y="63" width="20" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </activityIndicatorView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WHH-Mb-ufV">
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQf-NT-Uqg">
                                             <rect key="frame" x="0.0" y="0.0" width="95" height="145"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="uYu-Fh-QYN" kind="push" id="Xq4-cC-wf7"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="0.8699532390510949" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="coverImageView" destination="WHH-Mb-ufV" id="cHJ-Sb-Nl8"/>
-                                    <segue destination="uYu-Fh-QYN" kind="push" id="VG4-Qb-Ftc"/>
+                                    <outlet property="coverImageButton" destination="OQf-NT-Uqg" id="0lE-r5-krr"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

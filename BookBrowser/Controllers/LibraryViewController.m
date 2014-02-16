@@ -182,7 +182,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	NSIndexPath *bookIndex = [self.collectionView.indexPathsForSelectedItems objectAtIndex:0];
+	CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.collectionView];
+	NSIndexPath *bookIndex = [self.collectionView indexPathForItemAtPoint:buttonPosition];
 	Book *book = [self.bookList bookAtIndex:bookIndex.row];
 	
 	DetailsViewController *details = segue.destinationViewController;
