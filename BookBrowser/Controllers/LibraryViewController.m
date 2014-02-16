@@ -53,7 +53,7 @@
 	[self hideKeyboardOnBookSearchBar];
 	
 	//Las opciones del filter action corresponden a las disponibles en BookSortType
-	self.orderActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Ordenar", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancelar", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"ISBN", nil), NSLocalizedString(@"Título", nil), nil];
+	self.orderActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Ordenar colección por", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancelar", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"ISBN", nil), NSLocalizedString(@"Título", nil), nil];
 	[self.orderActionSheet showFromBarButtonItem:sender animated:YES];
 }
 
@@ -62,7 +62,7 @@
 	[self hideKeyboardOnBookSearchBar];
 
 	//Las opciones del filter action corresponden a las disponibles en BookFilterType
-	self.filterActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Filtrar", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancelar", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Todos los libros", nil), NSLocalizedString(@"Libros normales", nil), NSLocalizedString(@"Libros premium", nil), nil];
+	self.filterActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Filtrar colección por", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancelar", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Todos los libros", nil), NSLocalizedString(@"Libros normales", nil), NSLocalizedString(@"Libros premium", nil), nil];
 	[self.filterActionSheet showFromBarButtonItem:sender animated:YES];
 }
 
