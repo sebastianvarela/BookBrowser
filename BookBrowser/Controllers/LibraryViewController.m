@@ -194,16 +194,19 @@
 	if (buttonIndex == actionSheet.cancelButtonIndex)
 		return;
 
-	if ([actionSheet isEqual:self.orderActionSheet])
-	{
-		[self.bookList setSortMethod:(BookSortType)buttonIndex];
-		[self.collectionView reloadData];
-	}
-	else if ([actionSheet isEqual:self.filterActionSheet])
-	{
-		[self.bookList setFilterMethod:(BookFilterType)buttonIndex];
-		[self.collectionView reloadData];
-	}
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+		if ([actionSheet isEqual:self.orderActionSheet])
+		{
+			[self.bookList setSortMethod:(BookSortType)buttonIndex];
+		}
+		else if ([actionSheet isEqual:self.filterActionSheet])
+		{
+			[self.bookList setFilterMethod:(BookFilterType)buttonIndex];
+		}
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[self.collectionView reloadData];
+		});
+	});
 }
 
 #pragma mark - Custom Methods
@@ -216,8 +219,12 @@
 
 - (void)refreshCollectionWithTextCriteriaOnBookSearchBar
 {
-	[self.bookList filterWithText: self.bookSearchBar.text];
-	[self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+		[self.bookList filterWithText: self.bookSearchBar.text];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
+		});
+	});
 }
 
 #pragma mark - StoryBoard Messages
