@@ -8,15 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "BookList.h"
+#import "BookDetails.h"
 
 @protocol BookManagerDelegate <NSObject>
-- (void)bookManagerDidReceivedBookCollectionFromServer:(BookList *)bookCollection;
 @optional
+- (void)bookManagerDidReceivedBookCollection:(BookList *)bookCollection;
+- (void)bookManagerDidReceivedBookDetails:(BookDetails *)bookDetails;
 - (void)bookManagerDidFailReceivingDataFromServerWithError:(NSError *)error;
 @end
 
 @interface BookManager : NSObject
 
 @property (weak, nonatomic) id<BookManagerDelegate> delegate;
+
+- (void)fetchBookCollection;
+- (void)fetchBookDetailsWithISBN:(NSString *)isbn;
 
 @end

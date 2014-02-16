@@ -7,8 +7,11 @@
 //
 
 #import "DetailsViewController.h"
+#import "BookManager.h"
 
-@interface DetailsViewController ()
+@interface DetailsViewController () <BookManagerDelegate>
+	@property (strong, nonatomic) BookManager *bookManager;
+	@property (strong, nonatomic) BookDetails *bookDetails;
 	@property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 	@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 	@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -34,7 +37,12 @@
 	self.title = NSLocalizedString(@"Detalles", nil);
 	self.authorLabel.text = self.book.author;
 	self.titleLabel.text = self.book.title;
+	[self.synopsisWebView loadHTMLString:NSLocalizedString(@"Cargando...", nil) baseURL:nil];
 
+	self.bookManager = [BookManager new];
+	self.bookManager.delegate = self;
+	[self.bookManager fetchBookDetailsWithISBN:self.book.isbn];
+	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		NSURL *url = [NSURL URLWithString:self.book.coverUrl];
 		NSData *data = [NSData dataWithContentsOfURL:url];
@@ -43,5 +51,18 @@
 	});
 }
 
+#pragma mark - Book Manager Delegate
+
+- (void)bookManagerDidReceivedBookDetails:(BookDetails *)bookDetails
+{
+	self.bookDetails = bookDetails;
+	[self.synopsisWebView loadHTMLString:self.bookDetails.synopsis baseURL:nil];
+}
+
+- (void)bookManagerDidFailReceivingDataFromServerWithError:(NSError *)error
+{
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Aceptar", nil), nil];
+	[alert show];
+}
 
 @end

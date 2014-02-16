@@ -41,6 +41,7 @@
 	self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Ordenar", nil);
 	self.navigationItem.rightBarButtonItem.title = NSLocalizedString(@"Filtrar", nil);
 	self.bookManager = [BookManager new];
+	[self.bookManager fetchBookCollection];
 	self.bookList = [BookList new];
 	self.bookManager.delegate = self;
 }
@@ -70,7 +71,7 @@
 
 #pragma mark - Book Manager Delegate
 
-- (void)bookManagerDidReceivedBookCollectionFromServer:(BookList *)bookCollection
+- (void)bookManagerDidReceivedBookCollection:(BookList *)bookCollection
 {
 	self.bookList = bookCollection;
 	[self.collectionView reloadData];

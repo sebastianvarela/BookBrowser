@@ -12,6 +12,8 @@ static NSString *const BOOKS_RESOURCE_URL = @"http://bqreader.eu01.aws.af.cm/boo
 
 @interface BookManager ()
 	@property (strong, nonatomic) NSMutableData *booksData;
+	@property (strong, nonatomic) NSURLConnection *bookCollectionConnection;
+	@property (strong, nonatomic) NSURLConnection *bookDetailsConnection;
 @end
 
 @implementation BookManager
@@ -20,13 +22,23 @@ static NSString *const BOOKS_RESOURCE_URL = @"http://bqreader.eu01.aws.af.cm/boo
 {
     self = [super init];
     if (self) {
-		NSURL *url = [NSURL URLWithString:BOOKS_RESOURCE_URL];
-		NSURLRequest *request = [NSURLRequest requestWithURL:url];
-		(void)[NSURLConnection connectionWithRequest:request delegate:self];
-		
-		self.booksData = [NSMutableData data];
+        _booksData = [NSMutableData data];
     }
     return self;
+}
+
+- (void)fetchBookCollection
+{
+	NSURL *url = [NSURL URLWithString:BOOKS_RESOURCE_URL];
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	self.bookCollectionConnection = [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+- (void)fetchBookDetailsWithISBN:(NSString *)isbn
+{
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", BOOKS_RESOURCE_URL, isbn]];
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	self.bookDetailsConnection = [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
 #pragma mark - Connection Delegate
@@ -51,11 +63,30 @@ static NSString *const BOOKS_RESOURCE_URL = @"http://bqreader.eu01.aws.af.cm/boo
 {
 	NSLog(@"Data succesfully received: %d bytes", [self.booksData length]);
 	
-	dispatch_async(dispatch_get_main_queue(), ^{
-		NSArray *json = [NSJSONSerialization JSONObjectWithData:self.booksData options:kNilOptions error:nil];
-		BookList *bookList = [self deserializeJSON:json];
-		[self.delegate bookManagerDidReceivedBookCollectionFromServer:bookList];
-	});
+	if ([connection isEqual:self.bookCollectionConnection])
+	{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			NSArray *json = [NSJSONSerialization JSONObjectWithData:self.booksData options:kNilOptions error:nil];
+			BookList *bookList = [self deserializeJSON:json];
+			if ([self.delegate respondsToSelector:@selector(bookManagerDidReceivedBookCollection:)])
+				[self.delegate bookManagerDidReceivedBookCollection:bookList];
+		});
+	}
+	else if ([connection isEqual:self.bookDetailsConnection])
+	{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			NSDictionary *json = [NSJSONSerialization JSONObjectWithData:self.booksData options:kNilOptions error:nil];
+			BookDetails *bookDetails = [BookDetails new];
+			for(NSString *key in json)
+			{
+				if ([bookDetails respondsToSelector:NSSelectorFromString(key)])
+					[bookDetails setValue:[json valueForKey:key] forKey:key];
+			}
+			
+			if ([self.delegate respondsToSelector:@selector(bookManagerDidReceivedBookDetails:)])
+				[self.delegate bookManagerDidReceivedBookDetails:bookDetails];
+		});
+	}
 }
 
 #pragma mark - Custom Methods

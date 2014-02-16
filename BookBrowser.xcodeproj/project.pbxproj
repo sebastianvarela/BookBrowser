@@ -29,6 +29,7 @@
 		9EF4DDDD18B0263A00B69A55 /* LibraryHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDDC18B0263A00B69A55 /* LibraryHeader.m */; };
 		9EF4DDE118B0530500B69A55 /* LibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDE018B0530400B69A55 /* LibraryViewController.m */; };
 		9EF4DDE418B0536C00B69A55 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDE318B0536C00B69A55 /* DetailsViewController.m */; };
+		9EF4DDE718B0612D00B69A55 /* BookDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDE618B0612D00B69A55 /* BookDetails.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,8 @@
 		9EF4DDE018B0530400B69A55 /* LibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryViewController.m; sourceTree = "<group>"; };
 		9EF4DDE218B0536C00B69A55 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		9EF4DDE318B0536C00B69A55 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		9EF4DDE518B0612D00B69A55 /* BookDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetails.h; sourceTree = "<group>"; };
+		9EF4DDE618B0612D00B69A55 /* BookDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetails.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +195,8 @@
 			children = (
 				9EF4DDC518AFEA1D00B69A55 /* Book.h */,
 				9EF4DDC618AFEA1D00B69A55 /* Book.m */,
+				9EF4DDE518B0612D00B69A55 /* BookDetails.h */,
+				9EF4DDE618B0612D00B69A55 /* BookDetails.m */,
 				9EF4DDC818AFEA3200B69A55 /* BookList.h */,
 				9EF4DDC918AFEA3200B69A55 /* BookList.m */,
 			);
@@ -322,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EF4DDDD18B0263A00B69A55 /* LibraryHeader.m in Sources */,
+				9EF4DDE718B0612D00B69A55 /* BookDetails.m in Sources */,
 				9EF4DDC718AFEA1D00B69A55 /* Book.m in Sources */,
 				9EF4DDDA18B005B800B69A55 /* BookCell.m in Sources */,
 				9EF4DDCA18AFEA3200B69A55 /* BookList.m in Sources */,
