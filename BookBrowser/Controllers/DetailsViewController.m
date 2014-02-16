@@ -37,6 +37,7 @@
 	self.title = NSLocalizedString(@"Detalles", nil);
 	self.authorLabel.text = self.book.author;
 	self.titleLabel.text = self.book.title;
+	self.synopsisWebView.dataDetectorTypes = UIDataDetectorTypeNone;
 	[self.synopsisWebView loadHTMLString:NSLocalizedString(@"Cargando...", nil) baseURL:nil];
 
 	self.bookManager = [BookManager new];
