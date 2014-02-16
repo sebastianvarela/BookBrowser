@@ -147,6 +147,7 @@
 		
 		reusableview.bookSearchBar.delegate = self;
 		self.bookSearchBar = reusableview.bookSearchBar;
+		self.bookSearchBar.placeholder = NSLocalizedString(@"Buscar libro por título", nil);
 		
         return reusableview;
     }
