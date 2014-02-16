@@ -81,8 +81,31 @@
 			sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
 			break;
 	}
-
 	self.filteredCollection = [[self.sourceCollection allObjects] sortedArrayUsingDescriptors:@[sortDescriptor]];
+	
+	NSPredicate *filterPredicate;
+	switch (self.bookFilterType)
+	{
+		case BookFilterTypeNormal:
+			filterPredicate = [NSPredicate predicateWithFormat:@"isPremium = NO"];
+			break;
+			
+		case BookFilterTypePremium:
+			filterPredicate = [NSPredicate predicateWithFormat:@"isPremium = YES"];
+			break;
+			
+		default:
+		case BookFilterTypeAll:
+			break;
+	}
+	if (filterPredicate)
+		self.filteredCollection = [self.filteredCollection filteredArrayUsingPredicate:filterPredicate];
+
+	if (![self.bookFilterText isEqualToString:@""])
+	{
+		NSPredicate *filterTextPredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@" argumentArray:@[self.bookFilterText]];
+		self.filteredCollection = [self.filteredCollection filteredArrayUsingPredicate:filterTextPredicate];
+	}
 }
 
 @end
