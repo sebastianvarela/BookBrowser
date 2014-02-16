@@ -9,7 +9,8 @@
 #import "BookList.h"
 
 @interface BookList ()
-	@property (strong, nonatomic) NSMutableArray *collection;
+	@property (strong, nonatomic) NSMutableSet *sourceCollection;
+	@property (strong, nonatomic) NSArray *filteredCollection;
 	@property (nonatomic) BookSortType bookSortType;
 	@property (nonatomic) BookFilterType bookFilterType;
 	@property (strong, nonatomic) NSString *bookFilterText;
@@ -21,39 +22,67 @@
 {
     self = [super init];
     if (self) {
-        _collection = [NSMutableArray array];
+        _sourceCollection = [NSMutableSet set];
+		_filteredCollection = [NSArray array];
+		_bookSortType = BookSortTypeTitle;
+		_bookFilterType = BookFilterTypeAll;
+		_bookFilterText = @"";
     }
     return self;
 }
 
 - (void)addBook:(Book *)book
 {
-	[self.collection addObject:book];
+	if ([self.sourceCollection containsObject:book])
+		return;
+	[self.sourceCollection addObject:book];
+	[self reorderBooks];
 }
 
 - (NSInteger)count
 {
-	return self.collection.count;
+	return self.filteredCollection.count;
 }
 
 - (Book *)bookAtIndex:(NSInteger)index
 {
-	return [self.collection objectAtIndex:index];
+	return [self.filteredCollection objectAtIndex:index];
 }
 
 - (void)setSortMethod:(BookSortType)bookSortType
 {
 	self.bookSortType = bookSortType;
+	[self reorderBooks];
 }
 
 - (void)setFilterMethod:(BookFilterType)BookFilterType
 {
 	self.bookFilterType = BookFilterType;
+	[self reorderBooks];
 }
 
 - (void)filterWithText:(NSString *)bookFilterText
 {
 	self.bookFilterText = bookFilterText;
+	[self reorderBooks];
+}
+
+- (void)reorderBooks
+{
+	NSSortDescriptor *sortDescriptor;
+	switch (self.bookSortType)
+	{
+		case BookSortTypeISBN:
+			sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"isbn" ascending:YES];
+			break;
+			
+		default:
+		case BookSortTypeTitle:
+			sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+			break;
+	}
+
+	self.filteredCollection = [[self.sourceCollection allObjects] sortedArrayUsingDescriptors:@[sortDescriptor]];
 }
 
 @end
