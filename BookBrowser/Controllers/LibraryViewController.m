@@ -9,6 +9,7 @@
 #import "LibraryViewController.h"
 #import "BookCell.h"
 #import "LibraryHeader.h"
+#import "DetailsViewController.h"
 
 @interface LibraryViewController () <BookManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate>
 
@@ -167,6 +168,17 @@
 {
 	[self.bookSearchBar setShowsCancelButton:NO animated:YES];
 	[self.bookSearchBar resignFirstResponder];
+}
+
+#pragma mark - StoryBoard Messages
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	NSIndexPath *bookIndex = [self.collectionView.indexPathsForSelectedItems objectAtIndex:0];
+	Book *book = [self.bookList bookAtIndex:bookIndex.row];
+	
+	DetailsViewController *details = segue.destinationViewController;
+	details.book = book;
 }
 
 @end
