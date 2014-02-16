@@ -181,10 +181,6 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-	if ([searchText isEqualToString:@""])
-		[self.bookSearchBar setShowsCancelButton:NO animated:YES];
-	else
-		[self.bookSearchBar setShowsCancelButton:YES animated:YES];
 	[self refreshCollectionWithTextCriteriaOnBookSearchBar];
 }
 
