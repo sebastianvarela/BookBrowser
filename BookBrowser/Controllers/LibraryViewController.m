@@ -62,7 +62,7 @@
 	[self hideKeyboardOnBookSearchBar];
 
 	//Las opciones del filter action corresponden a las disponibles en BookFilterType
-	self.filterActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Filtrar", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancelar", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Todos los libros", nil), NSLocalizedString(@"Libros normales", nil), NSLocalizedString(@"Libros premiums", nil), nil];
+	self.filterActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Filtrar", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancelar", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Todos los libros", nil), NSLocalizedString(@"Libros normales", nil), NSLocalizedString(@"Libros premium", nil), nil];
 	[self.filterActionSheet showFromBarButtonItem:sender animated:YES];
 }
 
