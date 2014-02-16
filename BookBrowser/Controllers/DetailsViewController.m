@@ -43,6 +43,7 @@
 	self.bookManager = [BookManager new];
 	self.bookManager.delegate = self;
 	[self.bookManager fetchBookDetailsWithISBN:self.book.isbn];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
 		NSURL *url = [NSURL URLWithString:self.book.coverUrl];
@@ -55,16 +56,25 @@
 	});
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	
+	[super viewWillDisappear:animated];
+}
+
 #pragma mark - Book Manager Delegate
 
 - (void)bookManagerDidReceivedBookDetails:(BookDetails *)bookDetails
 {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	self.bookDetails = bookDetails;
 	[self.synopsisWebView loadHTMLString:self.bookDetails.synopsis baseURL:nil];
 }
 
 - (void)bookManagerDidFailReceivingDataFromServerWithError:(NSError *)error
 {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Aceptar", nil), nil];
 	[alert show];
 }

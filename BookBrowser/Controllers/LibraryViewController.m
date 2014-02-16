@@ -40,10 +40,12 @@
 	self.title = NSLocalizedString(@"Biblioteca", nil);
 	self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Ordenar", nil);
 	self.navigationItem.rightBarButtonItem.title = NSLocalizedString(@"Filtrar", nil);
-	self.bookManager = [BookManager new];
-	[self.bookManager fetchBookCollection];
 	self.bookList = [BookList new];
+
+	self.bookManager = [BookManager new];
 	self.bookManager.delegate = self;
+	[self.bookManager fetchBookCollection];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (IBAction)orderButtonTouch:(id)sender
@@ -73,12 +75,14 @@
 
 - (void)bookManagerDidReceivedBookCollection:(BookList *)bookCollection
 {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	self.bookList = bookCollection;
 	[self.collectionView reloadData];
 }
 
 - (void)bookManagerDidFailReceivingDataFromServerWithError:(NSError *)error
 {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Aceptar", nil), nil];
 	[alert show];
 }
