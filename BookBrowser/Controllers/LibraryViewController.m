@@ -90,11 +90,13 @@
 #pragma mark - UICollectionView Delegate
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-	return 1;
+	return 2;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+	if (section == 0)
+		return 0;
 	return [self.bookList count];
 }
 
@@ -118,11 +120,30 @@
     return cell;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    if (section == 1)
+	{
+        return CGSizeMake(0, 0);
+    }
+	else
+	{
+        return CGSizeMake(self.collectionView.bounds.size.width, 44);
+    }
+}
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     if ([kind isEqual:UICollectionElementKindSectionHeader])
 	{
         LibraryHeader *reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+
+		if (indexPath.section == 1)
+		{
+			reusableview.hidden = YES;
+			[reusableview setFrame: CGRectMake(reusableview.frame.origin.x, reusableview.frame.origin.y - 100, reusableview.frame.size.width, 1)];
+			return reusableview;
+		}
 		
 		reusableview.bookSearchBar.delegate = self;
 		self.bookSearchBar = reusableview.bookSearchBar;
@@ -142,13 +163,26 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
+	if (![searchBar.text isEqualToString:@""])
+	{
+		searchBar.text = @"";
+		[self refreshCollectionWithTextCriteriaOnBookSearchBar];
+	}
+	
+	[self hideKeyboardOnBookSearchBar];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+	[self refreshCollectionWithTextCriteriaOnBookSearchBar];
 	[self hideKeyboardOnBookSearchBar];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-	[self.bookList filterWithText:searchText];
-	[self.collectionView reloadData];
+	if ([searchText isEqualToString:@""])
+		[self.bookSearchBar setShowsCancelButton:NO animated:YES];
+	[self refreshCollectionWithTextCriteriaOnBookSearchBar];
 }
 
 #pragma mark - UIActionSheet Delegate
@@ -178,10 +212,18 @@
 	[self.bookSearchBar resignFirstResponder];
 }
 
+- (void)refreshCollectionWithTextCriteriaOnBookSearchBar
+{
+	[self.bookList filterWithText: self.bookSearchBar.text];
+	[self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
+}
+
 #pragma mark - StoryBoard Messages
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+	[self hideKeyboardOnBookSearchBar];
+	
 	CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.collectionView];
 	NSIndexPath *bookIndex = [self.collectionView indexPathForItemAtPoint:buttonPosition];
 	Book *book = [self.bookList bookAtIndex:bookIndex.row];
