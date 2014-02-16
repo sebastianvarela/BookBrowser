@@ -19,7 +19,6 @@
 		9E06701618AEE4C300FE62A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E066FFE18AEE4C200FE62A5 /* UIKit.framework */; };
 		9E06701E18AEE4C300FE62A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E06701C18AEE4C300FE62A5 /* InfoPlist.strings */; };
 		9E06702018AEE4C300FE62A5 /* BookBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E06701F18AEE4C300FE62A5 /* BookBrowserTests.m */; };
-		9EF4DDBB18AFDE2900B69A55 /* LibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDBA18AFDE2900B69A55 /* LibraryViewController.m */; };
 		9EF4DDC018AFE59100B69A55 /* BookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDBF18AFE59100B69A55 /* BookManager.m */; };
 		9EF4DDC718AFEA1D00B69A55 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDC618AFEA1D00B69A55 /* Book.m */; };
 		9EF4DDCA18AFEA3200B69A55 /* BookList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDC918AFEA3200B69A55 /* BookList.m */; };
@@ -28,6 +27,7 @@
 		9EF4DDD418B004E600B69A55 /* Storyboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EF4DDD218B004E600B69A55 /* Storyboard_iPhone.storyboard */; };
 		9EF4DDDA18B005B800B69A55 /* BookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDD918B005B800B69A55 /* BookCell.m */; };
 		9EF4DDDD18B0263A00B69A55 /* LibraryHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDDC18B0263A00B69A55 /* LibraryHeader.m */; };
+		9EF4DDE118B0530500B69A55 /* LibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4DDE018B0530400B69A55 /* LibraryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +57,6 @@
 		9E06701B18AEE4C300FE62A5 /* BookBrowserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BookBrowserTests-Info.plist"; sourceTree = "<group>"; };
 		9E06701D18AEE4C300FE62A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E06701F18AEE4C300FE62A5 /* BookBrowserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookBrowserTests.m; sourceTree = "<group>"; };
-		9EF4DDB918AFDE2900B69A55 /* LibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryViewController.h; sourceTree = "<group>"; };
-		9EF4DDBA18AFDE2900B69A55 /* LibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryViewController.m; sourceTree = "<group>"; };
 		9EF4DDBE18AFE59100B69A55 /* BookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookManager.h; sourceTree = "<group>"; };
 		9EF4DDBF18AFE59100B69A55 /* BookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookManager.m; sourceTree = "<group>"; };
 		9EF4DDC518AFEA1D00B69A55 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
@@ -74,6 +72,8 @@
 		9EF4DDD918B005B800B69A55 /* BookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookCell.m; sourceTree = "<group>"; };
 		9EF4DDDB18B0263900B69A55 /* LibraryHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryHeader.h; sourceTree = "<group>"; };
 		9EF4DDDC18B0263A00B69A55 /* LibraryHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryHeader.m; sourceTree = "<group>"; };
+		9EF4DDDF18B0530400B69A55 /* LibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryViewController.h; sourceTree = "<group>"; };
+		9EF4DDE018B0530400B69A55 /* LibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,15 +133,14 @@
 		9E06700018AEE4C200FE62A5 /* BookBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				9EF4DDBD18AFE52A00B69A55 /* Domain */,
 				9EF4DDC418AFEA1200B69A55 /* Models */,
 				9EF4DDD018B004C000B69A55 /* Views */,
-				9EF4DDBD18AFE52A00B69A55 /* Domain */,
+				9EF4DDDE18B052DA00B69A55 /* Controllers */,
 				9E06700918AEE4C200FE62A5 /* AppDelegate.h */,
 				9E06700A18AEE4C200FE62A5 /* AppDelegate.m */,
 				9E06700C18AEE4C200FE62A5 /* Images.xcassets */,
 				9E06700118AEE4C200FE62A5 /* Supporting Files */,
-				9EF4DDB918AFDE2900B69A55 /* LibraryViewController.h */,
-				9EF4DDBA18AFDE2900B69A55 /* LibraryViewController.m */,
 			);
 			path = BookBrowser;
 			sourceTree = "<group>";
@@ -207,6 +206,15 @@
 				9EF4DDDC18B0263A00B69A55 /* LibraryHeader.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		9EF4DDDE18B052DA00B69A55 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9EF4DDDF18B0530400B69A55 /* LibraryViewController.h */,
+				9EF4DDE018B0530400B69A55 /* LibraryViewController.m */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,10 +319,10 @@
 				9EF4DDDD18B0263A00B69A55 /* LibraryHeader.m in Sources */,
 				9EF4DDC718AFEA1D00B69A55 /* Book.m in Sources */,
 				9EF4DDDA18B005B800B69A55 /* BookCell.m in Sources */,
-				9EF4DDBB18AFDE2900B69A55 /* LibraryViewController.m in Sources */,
 				9EF4DDCA18AFEA3200B69A55 /* BookList.m in Sources */,
 				9E06700B18AEE4C200FE62A5 /* AppDelegate.m in Sources */,
 				9EF4DDC018AFE59100B69A55 /* BookManager.m in Sources */,
+				9EF4DDE118B0530500B69A55 /* LibraryViewController.m in Sources */,
 				9E06700718AEE4C200FE62A5 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
