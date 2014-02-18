@@ -60,6 +60,7 @@
 		9E06701B18AEE4C300FE62A5 /* BookBrowserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BookBrowserTests-Info.plist"; sourceTree = "<group>"; };
 		9E06701D18AEE4C300FE62A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E06701F18AEE4C300FE62A5 /* BookBrowserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookBrowserTests.m; sourceTree = "<group>"; };
+		9E0A222B18B3F8DA005904D1 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		9E95C00418B10EA6000AC1FC /* Synopsis.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Synopsis.css; sourceTree = "<group>"; };
 		9EF4DDBE18AFE59100B69A55 /* BookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookManager.h; sourceTree = "<group>"; };
 		9EF4DDBF18AFE59100B69A55 /* BookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookManager.m; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		9E06700018AEE4C200FE62A5 /* BookBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				9E0A222B18B3F8DA005904D1 /* Constants.h */,
 				9EF4DDBD18AFE52A00B69A55 /* Domain */,
 				9EF4DDC418AFEA1200B69A55 /* Models */,
 				9EF4DDD018B004C000B69A55 /* Views */,

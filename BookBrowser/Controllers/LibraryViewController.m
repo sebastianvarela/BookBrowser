@@ -10,6 +10,7 @@
 #import "BookCell.h"
 #import "LibraryHeader.h"
 #import "DetailsViewController.h"
+#import "Constants.h"
 
 @interface LibraryViewController () <BookManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate>
 
@@ -181,7 +182,8 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-	[self refreshCollectionWithTextCriteriaOnBookSearchBar];
+	if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7"))
+		[self refreshCollectionWithTextCriteriaOnBookSearchBar];
 }
 
 #pragma mark - UIActionSheet Delegate
@@ -219,7 +221,10 @@
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
 		[self.bookList filterWithText: self.bookSearchBar.text];
 		dispatch_async(dispatch_get_main_queue(), ^{
-			[self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
+			if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7"))
+				[self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
+			else
+				[self.collectionView reloadData];
 		});
 	});
 }
